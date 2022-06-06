@@ -25,8 +25,7 @@ Los LINKs del 'MICROSERVICIO' son:
      - procesarObtenerResultados:  
 	   $ curl http://localhost:8080/ibm/legacys/get/procesarObtenerResultados/{idSoli}
        $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/ibm/legacys/get/procesarObtenerResultados/{idSoli} 
-       	   
- 
+       	    
 DETALLE:
 ------- 
 * Para INFORMACION interna del MICROSERVICIO, apoyarse en ACTUATOR ingresando a: 
