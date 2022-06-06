@@ -1,7 +1,7 @@
 package pe.com.ibm.legacy.service;
 
-import java.sql.Connection;
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
+import java.sql.Connection; 
 import javax.ws.rs.core.Response;
 import pe.com.ibm.legacy.bean.Auditoria;
 import pe.com.ibm.legacy.util.UtilConexion;

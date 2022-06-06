@@ -1,5 +1,6 @@
 package pe.com.ibm.legacy.controller;
-
+ 
+import jakarta.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -12,7 +13,6 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponseSchema;
 import pe.com.ibm.legacy.bean.Auditoria;
 import pe.com.ibm.legacy.service.LegacyService;
-import javax.inject.Inject;
 
 /**
  * LegacyController
