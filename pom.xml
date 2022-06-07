@@ -55,7 +55,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>openliberty-employee-service</finalName>
+		<finalName>app-legacy</finalName>
 		
 		<pluginManagement>
 			<plugins>
