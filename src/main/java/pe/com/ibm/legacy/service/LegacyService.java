@@ -1,16 +1,18 @@
 package pe.com.ibm.legacy.service;
- 
+
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.core.Response;
-
 import pe.com.ibm.legacy.bean.Alerta;
 import pe.com.ibm.legacy.bean.Auditoria;
 import pe.com.ibm.legacy.bean.Cliente;
 import pe.com.ibm.legacy.bean.CreditoHipotecario;
-import pe.com.ibm.legacy.bean.RespAuditoria;
 import pe.com.ibm.legacy.bean.RespAlerta;
+import pe.com.ibm.legacy.bean.RespAuditoria;
 import pe.com.ibm.legacy.bean.Solicitud;
+import pe.com.ibm.legacy.util.Constantes;
 import pe.com.ibm.legacy.util.UtilConexion;
 import pe.com.ibm.legacy.util.UtilLegacy;
 
@@ -24,7 +26,7 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 	    private UtilLegacy   objUtilLegacy   = new UtilLegacy();
 	    private UtilConexion objUtilConexion = null;    
 	    private Connection   objConexion     = null;
-	    
+ 
   	   /**
   	    * procesarValidarRiesgo
   	    * @param  idCli
@@ -168,16 +170,20 @@ import pe.com.ibm.legacy.util.UtilLegacy;
   	    **/
 		public javax.ws.rs.core.Response procesarObtenerResultados( String idSol ){
 			   System.out.println( "------- [INICIO] - procesarObtenerResultados -------" );   
+ 		 
+			   Statement          objStmt      = null;
+			   ResultSet          objRs        = null;
+			   int                vTimeOut     = 5;
+			   String             vSQL         = Constantes.MYSQL_QUERY;
+			   RespAlerta         objRespAler  = new RespAlerta();
+			   Auditoria          objAudit     = new Auditoria();	
+			   Response           objResponse  = null;
+			   Alerta             objAler      = new Alerta(); 
+			   Solicitud          objSoli      = new Solicitud();	
+			   Cliente            objCli       = new Cliente();  
+			   CreditoHipotecario objCred      = new CreditoHipotecario();
 			   
-			   RespAlerta    objRespAler  = new RespAlerta();
-			   Auditoria     objAudit     = new Auditoria();	
-			   Response      objResponse  = null;
-			   Alerta        objAler      = new Alerta(); 
-			   Solicitud     objSoli      = new Solicitud();	
-			   Cliente       objCli       = new Cliente();  
-			   CreditoHipotecario objCred = new CreditoHipotecario();
-			   
-			   try{		
+			   try{ 
 				   this.objUtilConexion = new UtilConexion(); 
 				   this.objConexion     = this.objUtilConexion.obtenerConexionMYSQL( this.objConexion );
  
@@ -188,6 +194,20 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 					   //---------------------//
 					   //LOGICA
 					   
+					   if( objConexion != null ){
+						   System.out.println( "Successfully connected to MARIABD in IBMCLOUD" );
+						   System.out.println( "DB version: [" + objConexion.getMetaData().getDatabaseProductVersion() + "]" ); 
+	 
+						   objStmt = objConexion.createStatement();
+					       objRs   = objStmt.executeQuery( vSQL );
+					       objStmt.setQueryTimeout( vTimeOut ); 
+					     
+					       for( ;objRs.next(); ){
+							    System.out.println( "==>: " + objRs.getString( 1 ) );
+							    System.out.println( "==>: " + objRs.getString( 2 ) );
+							    System.out.println( "==>: " + objRs.getString( 3 ) ); 
+						   }					 
+					   }					   
 					   //---------------------//
 					   
 					   objAudit.setCodigo( "0" );
@@ -226,7 +246,6 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 			   }
 			     
 			   return objResponse; 
-		} 
- 
+		}  
  }
 

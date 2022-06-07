@@ -12,7 +12,7 @@ Los LINKs del 'MICROSERVICIO' son:
   
      - validarRiesgo: 
 	   $ curl http://localhost:9080/app-legacy/ibm/legacys/get/validarRiesgo/{idCli}/{dniCli}
-       $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/app-legacy/ibm/legacys/get/validarRiesgo/10/41816133
+       $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/app-legacy/ibm/legacys/get/validarRiesgo/{idCli}/{dniCli}
        
      - validarPersona:  
 	   $ curl http://localhost:9080/app-legacy/ibm/legacys/get/validarPersona/{idCli}/{dniCli}
