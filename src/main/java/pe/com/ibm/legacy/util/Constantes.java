@@ -1,9 +1,12 @@
 package pe.com.ibm.legacy.util;
 
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * Constantes
  * @author cguerra
  **/
+ @ApplicationScoped
  public class Constantes{
         
 	    //------------------ [BD-HARDCODE] ------------------//

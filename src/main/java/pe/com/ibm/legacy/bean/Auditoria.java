@@ -13,7 +13,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
  @Schema( name = "Auditoria", description = "POJO que representa la entidad Auditoria." )
  public class Auditoria implements Serializable{
  
-	    private static final long serialVersionUID = -2282410118743693954L;
+	    private static final long serialVersionUID = -2282410118223693954L;
 	
 		@Schema( required = true )
 		@XmlElement
@@ -26,26 +26,33 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 		@Schema( required = true )
 		@XmlElement
 		private String descripcion;
+		 
 		
 		public int getId() {
-			return id;
+			   return id;
 		}
+		
 		public void setId(int id) {
-			this.id = id;
+			   this.id = id;
 		}
+		
 		public String getCodigo() {
-			return codigo;
+			   return codigo;
 		}
+		
 		public void setCodigo(String codigo) {
-			this.codigo = codigo;
+			   this.codigo = codigo;
 		}
+		
 		public String getDescripcion() {
-			return descripcion;
+			   return descripcion;
 		}
+		
 		public void setDescripcion(String descripcion) {
-			this.descripcion = descripcion;
+			   this.descripcion = descripcion;
 		}
+		
 		public static long getSerialversionuid() {
-			return serialVersionUID;
+			   return serialVersionUID;
 		} 
  }

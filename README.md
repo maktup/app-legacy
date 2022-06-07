@@ -11,20 +11,21 @@ Los LINKs del 'MICROSERVICIO' son:
      ---------------------------
   
      - validarRiesgo: 
-	   $ curl http://localhost:8080/ibm/legacys/get/validarRiesgo/{idCli}/{dniCli}
-       $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/ibm/legacys/get/validarRiesgo/10/41816133
+	   $ curl http://localhost:9080/app-legacy/ibm/legacys/get/validarRiesgo/{idCli}/{dniCli}
+       $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/app-legacy/ibm/legacys/get/validarRiesgo/10/41816133
        
      - validarPersona:  
-	   $ curl http://localhost:8080/ibm/legacys/get/validarPersona/{idCli}/{dniCli}
-       $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/ibm/legacys/get/validarPersona/{idCli}/{dniCli}
+	   $ curl http://localhost:9080/app-legacy/ibm/legacys/get/validarPersona/{idCli}/{dniCli}
+       $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/app-legacy/ibm/legacys/get/validarPersona/{idCli}/{dniCli}
        
      - validarAlerta:  
-	   $ curl http://localhost:8080/ibm/legacys/get/validarAlerta/{idSoli}
-       $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/ibm/legacys/get/validarAlerta/{idSoli}
+	   $ curl http://localhost:9080/app-legacy/ibm/legacys/get/validarAlerta/{idSoli}
+       $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/app-legacy/ibm/legacys/get/validarAlerta/{idSoli}
        
      - procesarObtenerResultados:  
-	   $ curl http://localhost:8080/ibm/legacys/get/procesarObtenerResultados/{idSoli}
-       $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/ibm/legacys/get/procesarObtenerResultados/{idSoli} 
+	   $ curl http://localhost:9080/app-legacy/ibm/legacys/get/obtenerResultados/{idSoli}
+       $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/app-legacy/ibm/legacys/get/obtenerResultados/{idSoli} 
+      	    
        	    
 DETALLE:
 ------- 
@@ -38,6 +39,16 @@ BANNERs:
 
 
 
+DESPLIEGUE OPENSHIFT CON DOCKER:
+--------------------------------
+$ docker build -t app-legacy .
+$ docker run -i --rm -p 9080:9080 app-legacy
+
+http://localhost:8080/openapi
+http://localhost:8080/openapi/ui/
+
+
+
 DESPLIEGUE OPENSHIFT CON LIBERTY:
 --------------------------------
 
@@ -46,7 +57,6 @@ DESPLIEGUE OPENSHIFT CON LIBERTY:
 $ oc delete imagestream.image.openshift.io app-legacy -n dummy-liberty
 $ oc import-image app-legacy --from=docker.io/maktup/app-legacy:latest --confirm -n dummy-liberty
 $ oc get imagestream.image.openshift.io app-legacy -n dummy-liberty
-
 
 
 2. 'DESPLEIGUE EN LIBERTY-SERVER':

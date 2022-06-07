@@ -1,9 +1,12 @@
 package pe.com.ibm.legacy.util;
- 
+
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * UtilLegacy
  * @author cguerra
  **/
+ @ApplicationScoped
  public class UtilLegacy{
  
 	   /**

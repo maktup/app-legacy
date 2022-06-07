@@ -1,9 +1,16 @@
 package pe.com.ibm.legacy.service;
-
-import jakarta.enterprise.context.ApplicationScoped;
-import java.sql.Connection; 
+ 
+import java.sql.Connection;
+import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.core.Response;
+
+import pe.com.ibm.legacy.bean.Alerta;
 import pe.com.ibm.legacy.bean.Auditoria;
+import pe.com.ibm.legacy.bean.Cliente;
+import pe.com.ibm.legacy.bean.CreditoHipotecario;
+import pe.com.ibm.legacy.bean.RespAuditoria;
+import pe.com.ibm.legacy.bean.RespAlerta;
+import pe.com.ibm.legacy.bean.Solicitud;
 import pe.com.ibm.legacy.util.UtilConexion;
 import pe.com.ibm.legacy.util.UtilLegacy;
 
@@ -27,8 +34,9 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 		public javax.ws.rs.core.Response procesarValidarRiesgo( String idCli, String dniCli ){
 			   System.out.println( "------- [INICIO] - procesarValidarRiesgo -------" );   
 			   
-			   Auditoria objAudit    = new Auditoria();			   
-			   Response  objResponse = null;
+			   RespAuditoria objRespAudit = new RespAuditoria();
+			   Auditoria     objAudit     = new Auditoria();			   
+			   Response      objResponse  = null;
 			   
 			   try{				   
 				   int vEstadoDni   = Integer.parseInt( this.objUtilLegacy.existeDniEnCadena( dniCli ) );
@@ -42,16 +50,21 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 				   else{
 					   objAudit.setCodigo( "-1" );
 					   objAudit.setDescripcion( "Proceso de validación de RIESGO: [NO ACEPTADO]." );  
-				   }		
+				   }
+				   
+				   objRespAudit.setAuditoria( objAudit );				   
+				   objResponse = Response.ok( objRespAudit ).build(); 
 			   }
 			   catch( Exception e ) {
 				      e.printStackTrace();
 				      
 					  objAudit.setCodigo( "-1" );
 					  objAudit.setDescripcion( "ERROR ENCONTRADO: [" + e.getMessage() + "]" );  
+					  
+					  objRespAudit.setAuditoria( objAudit );	
+					  objResponse = Response.status( 500 ).entity( objAudit ).build();
 			   }
-			   finally{
-				       objResponse = Response.ok( objAudit ).build(); 
+			   finally{ 
 				       System.out.println( "------- [FIN] - procesarValidarRiesgo -------" ); 
 			   }
 			     
@@ -67,8 +80,9 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 		public javax.ws.rs.core.Response procesarValidarPersona( String idCli, String dniCli ){
 			   System.out.println( "------- [INICIO] - procesarValidarPersona -------" );   
 			   
-			   Auditoria objAudit    = new Auditoria();			   
-			   Response  objResponse = null;
+			   RespAuditoria objRespAudit = new RespAuditoria();
+			   Auditoria     objAudit     = new Auditoria();			   
+			   Response      objResponse  = null;
 			   
 			   try{				   
 				   int vEstadoDni   = Integer.parseInt( this.objUtilLegacy.existeDniEnCadena( dniCli ) );
@@ -82,22 +96,27 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 				   else{
 					   objAudit.setCodigo( "-1" );
 					   objAudit.setDescripcion( "Proceso de validación de PERSONA: [NO ACEPTADO]." );  
-				   }		
+				   }
+				   
+				   objRespAudit.setAuditoria( objAudit );				   
+				   objResponse = Response.ok( objRespAudit ).build(); 
 			   }
 			   catch( Exception e ) {
 				      e.printStackTrace();
 				      
 					  objAudit.setCodigo( "-1" );
 					  objAudit.setDescripcion( "ERROR ENCONTRADO: [" + e.getMessage() + "]" );  
+					  
+					  objRespAudit.setAuditoria( objAudit );	
+					  objResponse = Response.status( 500 ).entity( objAudit ).build();
 			   }
-			   finally{
-				       objResponse = Response.ok( objAudit ).build(); 
+			   finally{ 
 				       System.out.println( "------- [FIN] - procesarValidarPersona -------" ); 
 			   }
 			     
-			   return objResponse; 	
+			   return objResponse;
 		}
-		
+				
   	   /**
   	    * procesarValidarAlerta
   	    * @param  idSol
@@ -106,8 +125,9 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 		public javax.ws.rs.core.Response procesarValidarAlerta( String idSol ){
 			   System.out.println( "------- [INICIO] - procesarValidarAlerta -------" );   
 			   
-			   Auditoria objAudit    = new Auditoria();			   
-			   Response  objResponse = null;
+			   RespAuditoria objRespAudit = new RespAuditoria();
+			   Auditoria     objAudit     = new Auditoria();			   
+			   Response      objResponse  = null;
 			   
 			   try{				   
 				   int vEstadoIdSol = Integer.parseInt( this.objUtilLegacy.existeSolicitudEnCadena( idSol ) ); 
@@ -120,16 +140,21 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 				   else{
 					   objAudit.setCodigo( "-1" );
 					   objAudit.setDescripcion( "Proceso de validación de SOLICITUD: [NO ACEPTADO]." );  
-				   }		
+				   }	
+				   
+				   objRespAudit.setAuditoria( objAudit );	
+				   objResponse = Response.ok( objRespAudit ).build(); 
 			   }
 			   catch( Exception e ) {
 				      e.printStackTrace();
 				      
 					  objAudit.setCodigo( "-1" );
 					  objAudit.setDescripcion( "ERROR ENCONTRADO: [" + e.getMessage() + "]" );  
+					  
+					  objRespAudit.setAuditoria( objAudit );	
+					  objResponse = Response.status( 500 ).entity( objAudit ).build();
 			   }
-			   finally{
-				       objResponse = Response.ok( objAudit ).build(); 
+			   finally{ 
 				       System.out.println( "------- [FIN] - procesarValidarAlerta -------" ); 
 			   }
 			     
@@ -144,8 +169,13 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 		public javax.ws.rs.core.Response procesarObtenerResultados( String idSol ){
 			   System.out.println( "------- [INICIO] - procesarObtenerResultados -------" );   
 			   
-			   Auditoria objAudit    = new Auditoria();			   
-			   Response  objResponse = null;
+			   RespAlerta    objRespAler  = new RespAlerta();
+			   Auditoria     objAudit     = new Auditoria();	
+			   Response      objResponse  = null;
+			   Alerta        objAler      = new Alerta(); 
+			   Solicitud     objSoli      = new Solicitud();	
+			   Cliente       objCli       = new Cliente();  
+			   CreditoHipotecario objCred = new CreditoHipotecario();
 			   
 			   try{		
 				   this.objUtilConexion = new UtilConexion(); 
@@ -166,20 +196,36 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 				   else{
 					   objAudit.setCodigo( "-1" );
 					   objAudit.setDescripcion( "Proceso de validación de SOLICITUD: [NO ACEPTADO]." );  
-				   }		
+				   }	
+	     		   
+	     		   objSoli.setCliente( objCli );
+	     		   objSoli.setCreditoHipotecario( objCred );
+	     		   
+	     		   objRespAler.setAlerta( objAler );
+	     		   objRespAler.setAuditoria( objAudit );	
+	     		   objRespAler.setSolicitud( objSoli );
+	     		  
+				   objResponse = Response.ok( objRespAler ).build(); 
 			   }
 			   catch( Exception e ) {
 				      e.printStackTrace();
 				      
 					  objAudit.setCodigo( "-1" );
 					  objAudit.setDescripcion( "ERROR ENCONTRADO: [" + e.getMessage() + "]" );  
+				 
+		     		  objSoli.setCliente( objCli );
+		     		  objSoli.setCreditoHipotecario( objCred );
+		     		  
+		     		  objRespAler.setAlerta( objAler );
+		     		  objRespAler.setAuditoria( objAudit );	
+		     		  objRespAler.setSolicitud( objSoli );	
+					  objResponse = Response.status( 500 ).entity( objRespAler ).build();
 			   }
-			   finally{
-				       objResponse = Response.ok( objAudit ).build(); 
+			   finally{ 
 				       System.out.println( "------- [FIN] - procesarObtenerResultados -------" ); 
 			   }
 			     
-			   return objResponse; 	
+			   return objResponse; 
 		} 
  
  }

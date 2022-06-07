@@ -7,10 +7,13 @@ import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * UtilConexion
  * @author cguerra
  **/
+ @ApplicationScoped
  public class UtilConexion{
  
 	   /**

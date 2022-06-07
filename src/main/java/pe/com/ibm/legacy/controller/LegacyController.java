@@ -1,7 +1,6 @@
 package pe.com.ibm.legacy.controller;
  
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -12,77 +11,22 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponseSchema;
-import pe.com.ibm.legacy.bean.Auditoria;
+import pe.com.ibm.legacy.bean.RespAuditoria;
+import pe.com.ibm.legacy.bean.RespAlerta;
 import pe.com.ibm.legacy.service.LegacyService;
 
 /**
  * LegacyController
  * @author cguerra
  **/
-@ApplicationScoped
 @Path( "legacys" )
 public class LegacyController{
  
-    @Inject
-    private LegacyService clienteService;
-        
-     @GET
- 	 @Path( "/test1" )
- 	 @Produces( { MediaType.APPLICATION_JSON } ) 
-     @APIResponse(
-             responseCode = "404",
-             description  = "Error en el envio de datos",
-             content      = @Content( mediaType = "application/json" ) ) 
-     @APIResponseSchema( 
-     		value               = Auditoria.class,
-             responseDescription = "Proceso Exitoso.",
-             responseCode        = "200")
-     @Operation(
-             summary     = "Operacion para la validarPersona.",
-             description = "Operacion para la validarPersona." )      
-	public Response test1(){
-		   System.out.println( "------- [INICIO] - test1 -------" );     
- 
-		   Auditoria objAudit    = new Auditoria();			   
-		   Response  objResponse = null;
-		   
-		   objAudit.setCodigo( "0" );
-		   objAudit.setDescripcion( "OK OK OK" );  
-		   
-		   objResponse = Response.ok( objAudit ).build(); 
-		   return objResponse;
-    }
-      
-     @GET
- 	 @Path( "/get/test2" )
- 	 @Produces( { MediaType.APPLICATION_JSON } ) 
-     @APIResponse(
-             responseCode = "404",
-             description  = "Error en el envio de datos",
-             content      = @Content( mediaType = "application/json" ) ) 
-     @APIResponseSchema( 
-     		value               = Auditoria.class,
-             responseDescription = "Proceso Exitoso.",
-             responseCode        = "200")
-     @Operation(
-             summary     = "Operacion para la validarPersona.",
-             description = "Operacion para la validarPersona." )      
-	public Response test2(){
-		   System.out.println( "------- [INICIO] - test2 -------" );     
- 
-		   Auditoria objAudit    = new Auditoria();			   
-		   Response  objResponse = null;
-		   
-		   objAudit.setCodigo( "0" );
-		   objAudit.setDescripcion( "OK OK OK" );  
-		   
-		   objResponse = Response.ok( objAudit ).build(); 
-		   return objResponse;
-    }     
-     
+     @Inject
+     private LegacyService clienteService; 
     
    /** 
-    * validarPersona	
+    * validarRiesgo	
     * @param  idCli
     * @param  dniCli
     * @return Response 
@@ -95,7 +39,7 @@ public class LegacyController{
             description  = "Error en el envio de datos",
             content      = @Content( mediaType = "application/json" ) ) 
     @APIResponseSchema( 
-    		value               = Auditoria.class,
+    		value               = RespAuditoria.class,
             responseDescription = "Proceso Exitoso.",
             responseCode        = "200")
     @Operation(
@@ -137,12 +81,12 @@ public class LegacyController{
              description  = "Error en el envio de datos",
              content      = @Content( mediaType = "application/json" ) ) 
      @APIResponseSchema( 
-     		value               = Auditoria.class,
+     		value               = RespAuditoria.class,
              responseDescription = "Proceso Exitoso.",
              responseCode        = "200")
      @Operation(
              summary     = "Operacion para la validarPersona.",
-             description = "Operacion para la validarPersona." ) 
+             description = "Operacion para la validarPersona." )	 
 	public Response validarPersona( @PathParam( "idCli" ) String idCli, @PathParam( "dniCli" ) String dniCli ){
 		   System.out.println( "------- [INICIO] - validarPersona: [" + "idCli=" + idCli + ", dniCli=" + dniCli + "] -------" );   
 
@@ -179,12 +123,12 @@ public class LegacyController{
              description  = "Error en el envio de datos",
              content      = @Content( mediaType = "application/json" ) ) 
      @APIResponseSchema( 
-     		value               = Auditoria.class,
+     		value               = RespAuditoria.class,
              responseDescription = "Proceso Exitoso.",
              responseCode        = "200")
      @Operation(
              summary     = "Operacion para la validarAlerta.",
-             description = "Operacion para la validarAlerta." )     
+             description = "Operacion para la validarAlerta." )
  	public Response validarAlerta( @PathParam( "idSoli" ) String idSoli ){
  		   System.out.println( "------- [INICIO] - validarAlerta: [" + "idSoli=" + idSoli + "] -------" );   
 
@@ -221,7 +165,7 @@ public class LegacyController{
             description  = "Error en el envio de datos",
             content      = @Content( mediaType = "application/json" ) ) 
     @APIResponseSchema( 
-    		value               = Auditoria.class,
+    		value               = RespAlerta.class,
             responseDescription = "Proceso Exitoso.",
             responseCode        = "200")
     @Operation(
