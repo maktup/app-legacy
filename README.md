@@ -11,19 +11,23 @@ Los LINKs del 'MICROSERVICIO' son:
      ---------------------------
   
      - validarRiesgo: 
-	   $ curl http://localhost:9080/app-legacy/ibm/legacys/get/validarRiesgo/{idCli}/{dniCli}
-       $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/app-legacy/ibm/legacys/get/validarRiesgo/{idCli}/{dniCli}
+	   $ curl http://localhost:9080/app-legacy/ibm/legacys/get/validarRiesgo/{sueldoBrutoCre}/{plazoMesesCre}/{costoInmuebleCre}/{montoInicialCre}/{montoFinanciarCre}/{tasaCre}
+	   
+       $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/app-legacy/ibm/legacys/get/validarRiesgo/{sueldoBrutoCre}/{plazoMesesCre}/{costoInmuebleCre}/{montoInicialCre}/{montoFinanciarCre}/{tasaCre}
        
      - validarPersona:  
 	   $ curl http://localhost:9080/app-legacy/ibm/legacys/get/validarPersona/{idCli}/{dniCli}
+	   
        $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/app-legacy/ibm/legacys/get/validarPersona/{idCli}/{dniCli}
        
      - validarAlerta:  
 	   $ curl http://localhost:9080/app-legacy/ibm/legacys/get/validarAlerta/{idSoli}
+	   
        $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/app-legacy/ibm/legacys/get/validarAlerta/{idSoli}
        
      - procesarObtenerResultados:  
 	   $ curl http://localhost:9080/app-legacy/ibm/legacys/get/obtenerResultados/{idSoli}
+	   
        $ curl http://app-legacy-dummy-liberty.cluster-cla-cp4i-obs-ccc03eca20d26e6ac64511f874a64b9b-0000.us-south.containers.appdomain.cloud/app-legacy/ibm/legacys/get/obtenerResultados/{idSoli} 
       	    
        	    

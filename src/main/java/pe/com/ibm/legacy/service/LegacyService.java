@@ -44,14 +44,14 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 			   Auditoria     objAudit     = new Auditoria();			   
 			   Response      objResponse  = null;
  
-			   try{	
-				   double vSueldoNetro           = (sueldoBrutoCre * 0.7);
-				   double vDivisionDeuda         = (vSueldoNetro * 0.6); 
+			   try{	 			   
+				   double vSueldoNeto            = (sueldoBrutoCre * 0.7);
+				   double vMontoMaximoEndeudable = (vSueldoNeto * 0.6); 
 				
-				   double vValorDeuda            = (montoFinanciarCre + tasaCre);
-				   double vMontoMaximoEndeudable = (vValorDeuda / plazoMesesCre);
+				   double vValorDeuda    = (montoFinanciarCre + tasaCre);
+				   double vDivisionDeuda = (vValorDeuda / plazoMesesCre);
 				   
-				   System.out.println( "=> vSueldoNetro: ["   + vSueldoNetro   + "]" );
+				   System.out.println( "=> vSueldoNeto: ["    + vSueldoNeto    + "]" );
 				   System.out.println( "=> vDivisionDeuda: [" + vDivisionDeuda + "]" );
 				   System.out.println( "=> vValorDeuda: ["    + vValorDeuda    + "]" );
 				   System.out.println( "=> vMontoMaximoEndeudable: [" + vMontoMaximoEndeudable + "]" );
