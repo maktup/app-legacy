@@ -59,5 +59,23 @@ import javax.enterprise.context.ApplicationScoped;
 				   throw ioe;
 			}
 		}	
+	
+	   /**
+	    * main	
+	    * @param argumentos
+	    **/
+		public static void main( String[] argumentos ){
+			   try{
+				   String vCertiMySql = transformaArchivoToBase64( "C:\\WORKSPACE_ACE\\MQ\\proy_employee_service_crgaJava\\resources\\certificado-myql.crt" ); 
+				   System.out.println( "=> vCertiMySql: [" + vCertiMySql + "]" );
+				   
+				   //DESENCRIPTA el CERTIFICADO en una RUTA comun fisicamente [/tmp/certificado.crt]: 
+				   UtilSerializacion.transformaBase64ToArchivo( Constantes.CADENA_CERTIFICADO_MYSQL_BASE64, Constantes.MYSQL_RUTA_TEMP_CERTI );
+			   } 
+			   catch( Exception e ){
+				      e.printStackTrace(); 
+			   }
+		}		
+		
  }
  

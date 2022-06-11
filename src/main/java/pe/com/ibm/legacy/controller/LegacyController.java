@@ -24,15 +24,19 @@ public class LegacyController{
  
      @Inject
      private LegacyService clienteService; 
-    
+ 
    /** 
     * validarRiesgo	
-    * @param  idCli
-    * @param  dniCli
+    * @param  sueldoBrutoCre
+    * @param  plazoMesesCre
+    * @param  costoInmuebleCre
+    * @param  montoInicialCre
+    * @param  montoFinanciarCre
+    * @param  tasaCre
     * @return Response 
     **/
     @GET
-	@Path( "/get/validarRiesgo/{idCli}/{dniCli}")
+	@Path( "/get/validarRiesgo/{sueldoBrutoCre}/{plazoMesesCre}/{costoInmuebleCre}/{montoInicialCre}/{montoFinanciarCre}/{tasaCre}")
 	@Produces( { MediaType.APPLICATION_JSON } ) 
     @APIResponse(
             responseCode = "404",
@@ -45,13 +49,20 @@ public class LegacyController{
     @Operation(
             summary     = "Operacion para la validarRiesgo.",
             description = "Operacion para la validarRiesgo." )	     
-	public Response validarRiesgo( @PathParam( "idCli" ) String idCli, @PathParam( "dniCli" ) String dniCli ){
-		   System.out.println( "------- [INICIO] - validarRiesgo: [" + "idCli=" + idCli + ", dniCli=" + dniCli + "] -------" );
+	public Response validarRiesgo( @PathParam( "sueldoBrutoCre" ) String sueldoBrutoCre, @PathParam( "plazoMesesCre" ) String plazoMesesCre, @PathParam( "costoInmuebleCre" ) String costoInmuebleCre, @PathParam( "montoInicialCre" ) String montoInicialCre, @PathParam( "montoFinanciarCre" ) String montoFinanciarCre, @PathParam( "tasaCre" ) String tasaCre ){  
+		   System.out.println( "------- [INICIO] - validarRiesgo: [" + "sueldoBrutoCre=" + sueldoBrutoCre + ", plazoMesesCre=" + plazoMesesCre + ", costoInmuebleCre=" + costoInmuebleCre + ", montoInicialCre=" + montoInicialCre + ", montoFinanciarCre=" + montoFinanciarCre + ", tasaCre=" + tasaCre + "] -------" );
 	        
 		   String objResponseMsg = "";
 		   
 		   try{ 
-			   Response objRespuesta = this.clienteService.procesarValidarRiesgo( idCli, dniCli );			   
+			   double vSueldoBrutoCre    = Double.parseDouble( sueldoBrutoCre );
+			   int    vPlazoMesesCre     = Integer.parseInt(   plazoMesesCre  );
+			   double vCostoInmuebleCre  = Double.parseDouble( costoInmuebleCre  );
+			   double vMontoInicialCre   = Double.parseDouble( montoInicialCre   );
+			   double vMontoFinanciarCre = Double.parseDouble( montoFinanciarCre );
+			   double vTasaCre           = Double.parseDouble( tasaCre );
+			   
+			   Response objRespuesta = this.clienteService.procesarValidarRiesgo( vSueldoBrutoCre, vPlazoMesesCre, vCostoInmuebleCre, vMontoInicialCre, vMontoFinanciarCre,vTasaCre );			   
 			   return objRespuesta;
 		   }
 		   catch( Exception e ) { 

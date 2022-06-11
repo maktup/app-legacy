@@ -29,31 +29,44 @@ import pe.com.ibm.legacy.util.UtilLegacy;
  
   	   /**
   	    * procesarValidarRiesgo
-  	    * @param  idCli
-  	    * @param  dniCli
+  	    * @param  sueldoBrutoCre
+  	    * @param  plazoMesesCre
+  	    * @param  costoInmuebleCre
+  	    * @param  montoInicialCre
+  	    * @param  montoFinanciarCre
+  	    * @param  tasaCre
   	    * @return Response
   	    **/
-		public javax.ws.rs.core.Response procesarValidarRiesgo( String idCli, String dniCli ){
+		public javax.ws.rs.core.Response procesarValidarRiesgo( double sueldoBrutoCre, int plazoMesesCre, double costoInmuebleCre, double montoInicialCre, double montoFinanciarCre, double tasaCre ){
 			   System.out.println( "------- [INICIO] - procesarValidarRiesgo -------" );   
 			   
 			   RespAuditoria objRespAudit = new RespAuditoria();
 			   Auditoria     objAudit     = new Auditoria();			   
 			   Response      objResponse  = null;
-			   
-			   try{				   
-				   int vEstadoDni   = Integer.parseInt( this.objUtilLegacy.existeDniEnCadena( dniCli ) );
-				   int vEstadoIdCli = Integer.parseInt( this.objUtilLegacy.existeClienteEnCadena( idCli ) ); 
+ 
+			   try{	
+				   double vSueldoNetro           = (sueldoBrutoCre * 0.7);
+				   double vDivisionDeuda         = (vSueldoNetro * 0.6); 
+				
+				   double vValorDeuda            = (montoFinanciarCre + tasaCre);
+				   double vMontoMaximoEndeudable = (vValorDeuda / plazoMesesCre);
 				   
-				   if( (vEstadoDni == 0) && (vEstadoIdCli == 0) ){
-					   
-					   objAudit.setCodigo( "0" );
-					   objAudit.setDescripcion( "Proceso de validación de RIESGO: [SI ACEPTADO]." ); 
-				   }
-				   else{
+				   System.out.println( "=> vSueldoNetro: ["   + vSueldoNetro   + "]" );
+				   System.out.println( "=> vDivisionDeuda: [" + vDivisionDeuda + "]" );
+				   System.out.println( "=> vValorDeuda: ["    + vValorDeuda    + "]" );
+				   System.out.println( "=> vMontoMaximoEndeudable: [" + vMontoMaximoEndeudable + "]" );
+				   
+				   //Escenario ERROR: 
+				   if( vMontoMaximoEndeudable < vDivisionDeuda){
 					   objAudit.setCodigo( "-1" );
-					   objAudit.setDescripcion( "Proceso de validación de RIESGO: [NO ACEPTADO]." );  
+					   objAudit.setDescripcion( "Proceso de validación de RIESGO: [NO ACEPTADO], NO califica por CAPACIDAD de endeudamiento." ); 
+				   }	
+				   //Escenario OK: 
+				   else{
+					    objAudit.setCodigo( "0" );
+					    objAudit.setDescripcion( "Proceso de validación de RIESGO: [SI ACEPTADO], SI califica." );  
 				   }
-				   
+ 				   
 				   objRespAudit.setAuditoria( objAudit );				   
 				   objResponse = Response.ok( objRespAudit ).build(); 
 			   }

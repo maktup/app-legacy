@@ -25,8 +25,8 @@ import javax.enterprise.context.ApplicationScoped;
 				   vRutaArchivoTemporal = Constantes.MYSQL_RUTA_TEMP_CERTI;  
 				   System.out.println( "vRutaArchivoTemporal: [" + vRutaArchivoTemporal + "]" );
 				   
-				   //DESENCRIPTA el CERTIFICADO en una RUTA comun fisicamente [/tmp/certificado.crt]: 
-				   UtilSerializacion.transformaBase64ToArchivo( Constantes.CADENA_CERTIFICADO_BASE64, vRutaArchivoTemporal );
+				   //DESENCRIPTA el CERTIFICADO en una RUTA comun fisicamente [/tmp/certificado-myql.crt]: 
+				   UtilSerializacion.transformaBase64ToArchivo( Constantes.CADENA_CERTIFICADO_MYSQL_BASE64, vRutaArchivoTemporal );
  
 				   System.setProperty( "javax.net.ssl.keyStore",           vRutaArchivoTemporal );
 				   System.setProperty( "javax.net.ssl.keyStorePassword",   Constantes.MYSQL_CLAVE_CERTI ); 
