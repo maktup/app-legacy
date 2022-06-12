@@ -14,7 +14,7 @@ import java.io.Serializable;
  public class Solicitud implements Serializable{
 	 
 		private static final long serialVersionUID = 2544122558661770400L;
- 		
+  
 		@Schema( required = true )
 		@XmlElement
 		private Cliente cliente;

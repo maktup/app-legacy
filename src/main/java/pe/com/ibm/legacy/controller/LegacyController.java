@@ -119,53 +119,50 @@ public class LegacyController{
 			       System.out.println( "------- [FIN] - validarPersona] -------" );   
 		   }
 	}     
-    
-    /** 
-     * validarAlerta	
-     * @param  idCli
-     * @param  dniCli
-     * @return Response 
-     **/
-     @GET
-     @Path( "/get/validarAlerta/{idSoli}" )
- 	 @Produces( { MediaType.APPLICATION_JSON } ) 
-     @APIResponse(
-             responseCode = "404",
-             description  = "Error en el envio de datos",
-             content      = @Content( mediaType = "application/json" ) ) 
-     @APIResponseSchema( 
-     		value               = RespAuditoria.class,
-             responseDescription = "Proceso Exitoso.",
-             responseCode        = "200")
-     @Operation(
-             summary     = "Operacion para la validarAlerta.",
-             description = "Operacion para la validarAlerta." )
- 	public Response validarAlerta( @PathParam( "idSoli" ) String idSoli ){
- 		   System.out.println( "------- [INICIO] - validarAlerta: [" + "idSoli=" + idSoli + "] -------" );   
 
- 		   String objResponseMsg = "";
- 		   
- 		   try{ 
- 			   Response objRespuesta = this.clienteService.procesarValidarAlerta( idSoli );			   
- 			   return objRespuesta;
- 		   }
- 		   catch( Exception e ) { 
- 			      e.printStackTrace();
- 			      return Response.status( Response.Status.INTERNAL_SERVER_ERROR ).entity( objResponseMsg ).build();
- 		   }	
- 		   catch( Throwable e ) { 
- 			      e.printStackTrace();
- 			      return Response.status( Response.Status.INTERNAL_SERVER_ERROR ).entity( objResponseMsg ).build();
- 		   }	
- 		   finally{
- 			       System.out.println( "------- [FIN] - validarAlerta] -------" );   
- 		   }
- 	} 
-     	 	     
    /** 
     * obtenerResultados	
-	* @param  idCli
-	* @param  dniCli
+  	* @return Response 
+  	**/
+  	@GET
+  	@Path( "/get/obtenerResultados" )
+  	@Produces( { MediaType.APPLICATION_JSON } )
+      @APIResponse(
+              responseCode = "404",
+              description  = "Error en el envio de datos",
+              content      = @Content( mediaType = "application/json" ) ) 
+      @APIResponseSchema( 
+      		value               = RespConsultaSolicitud.class,
+              responseDescription = "Proceso Exitoso.",
+              responseCode        = "200")
+      @Operation(
+              summary     = "Operacion para la obtenerResultados.",
+              description = "Operacion para la obtenerResultados." )  
+  	public Response obtenerResultados(){
+  		   System.out.println( "------- [INICIO] - obtenerResultados: -------" );   
+
+    		   String objResponseMsg = "";
+    		   
+    		   try{ 
+    			   Response objRespuesta = this.clienteService.procesarObtenerResultados( null );			   
+    			   return objRespuesta;
+    		   }
+    		   catch( Exception e ) { 
+    			      e.printStackTrace();
+    			      return Response.status( Response.Status.INTERNAL_SERVER_ERROR ).entity( objResponseMsg ).build();
+    		   }	
+    		   catch( Throwable e ) { 
+    			      e.printStackTrace();
+    			      return Response.status( Response.Status.INTERNAL_SERVER_ERROR ).entity( objResponseMsg ).build();
+    		   }	
+    		   finally{
+    			       System.out.println( "------- [FIN] - obtenerResultados] -------" );   
+    		   }
+    	 }      
+     
+   /** 
+    * obtenerResultados	
+	* @param  idSoli
 	* @return Response 
 	**/
 	@GET
@@ -182,7 +179,6 @@ public class LegacyController{
     @Operation(
             summary     = "Operacion para la obtenerResultados.",
             description = "Operacion para la obtenerResultados." )  
-	
 	public Response obtenerResultados( @PathParam( "idSoli" ) String idSoli ){
 		   System.out.println( "------- [INICIO] - obtenerResultados: [" + "idSoli=" + idSoli + "] -------" );   
 

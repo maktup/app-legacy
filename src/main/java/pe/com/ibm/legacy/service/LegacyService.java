@@ -131,63 +131,14 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 			     
 			   return objResponse;
 		}
-				
-  	   /**
-  	    * procesarValidarAlerta
-  	    * @param  idSol
-  	    * @return Response
-  	    **/
-		public javax.ws.rs.core.Response procesarValidarAlerta( String idSol ){
-			   System.out.println( "------- [INICIO] - procesarValidarAlerta -------" );   
-			   
-			   RespAuditoria objRespAudit = new RespAuditoria();
-			   Auditoria     objAudit     = new Auditoria();
-			   Response      objResponse  = null;
-			   
-			   try{
-				   //PASOS:
-				   //1. Obtener valores de: TB_RESULTADOS cada 20 minutos, que tengan: codeVP & codeVR => 0..
-				   //2. Setear estructura en TOPIC.
-				   //3. Actualizar campo: eventoEnvio => ENVIADO. 
-				   
-				   int vEstadoIdSol = Integer.parseInt( this.objUtilLegacy.existeSolicitudEnCadena( idSol ) ); 
-				   
-				   if( (vEstadoIdSol == 0) ){
-					   
-					   objAudit.setCodigo( "0" );
-					   objAudit.setDescripcion( "Proceso de validación de SOLICITUD: [SI ACEPTADO]." ); 
-				   }
-				   else{
-					   objAudit.setCodigo( "-1" );
-					   objAudit.setDescripcion( "Proceso de validación de SOLICITUD: [NO ACEPTADO]." );  
-				   }	
-				   
-				   objRespAudit.setAuditoria( objAudit );	
-				   objResponse = Response.ok( objRespAudit ).build(); 
-			   }
-			   catch( Exception e ) {
-				      e.printStackTrace();
-				      
-					  objAudit.setCodigo( "-1" );
-					  objAudit.setDescripcion( "ERROR ENCONTRADO: [" + e.getMessage() + "]" );  
-					  
-					  objRespAudit.setAuditoria( objAudit );	
-					  objResponse = Response.status( 500 ).entity( objAudit ).build();
-			   }
-			   finally{ 
-				       System.out.println( "------- [FIN] - procesarValidarAlerta -------" ); 
-			   }
-			     
-			   return objResponse; 	
-		}
-		
+	
   	   /**
   	    * procesarObtenerResultados
   	    * @param  idSol
   	    * @return Response
   	    **/
 		public javax.ws.rs.core.Response procesarObtenerResultados( String idSol ){
-			   System.out.println( "------- [INICIO] - procesarObtenerResultados ??? -------" );   
+			   System.out.println( "------- [INICIO] - procesarObtenerResultados -------" );   
  		 
 			   Statement             objStmt        = null;
 			   ResultSet             objRs          = null; 
@@ -208,17 +159,29 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 					   System.out.println( "Successfully connected to MYSQL in IBMCLOUD" );
 					   System.out.println( "DB version: [" + this.objConexion.getMetaData().getDatabaseProductVersion() + "]" ); 
 	     	  					   
-					   //---- [BUSCAR REGISTRO EN: 'TB_CLIENTE' & 'TB_CREDITO_HIPOTECARIO' & 'TB_SOLICITUD' & 'TB_RESULTADOS'] ----//
-				       vSQL = "SELECT c.dniCli, c.nombresCli, c.apellidoMatCli, c.apellidoPatCli, c.tipoCli, c.correoCli, c.generoCli, "
-				       		+ "       ch.tipoCre, ch.montoInicialCre, ch.montoFinanciarCre, ch.plazoMesesCre, ch.sueldoBrutoCre, ch.costoInmuebleCre, ch.tasaCre, "
-				       		+ "       s.idCli, s.idCre, "
-				       		+ "       r.idSol, r.codeVP, r.detalleVP, r.codeVR, r.detalleVR, r.eventoEnvio "
-				       		+ "FROM   ibmclouddb.TB_CLIENTE c, ibmclouddb.TB_CREDITO_HIPOTECARIO ch, ibmclouddb.TB_SOLICITUD s, ibmclouddb.TB_RESULTADOS r "
-				       		+ "WHERE  s.idCli  = c.idCli  AND "
-				       		+ "       s.idCre  = ch.idCre AND "
-				       		+ "       s.idSol  = r.idSol  AND "
-				       		+ "       s.idSol  LIKE '" + idSol + "'";  
-                       
+					   //---- [BUSCAR REGISTRO EN: 'TB_CLIENTE' & 'TB_CREDITO_HIPOTECARIO' & 'TB_SOLICITUD' & 'TB_RESULTADOS'] ----//					   
+					   if( idSol != null ){
+						   vSQL = "SELECT c.dniCli, c.nombresCli, c.apellidoMatCli, c.apellidoPatCli, c.tipoCli, c.correoCli, c.generoCli, "
+							    + "       ch.tipoCre, ch.montoInicialCre, ch.montoFinanciarCre, ch.plazoMesesCre, ch.sueldoBrutoCre, ch.costoInmuebleCre, ch.tasaCre, "
+							    + "       s.idCli, s.idCre, "
+							    + "       r.idSol, r.codeVP, r.detalleVP, r.codeVR, r.detalleVR, r.eventoEnvio "
+							    + "FROM   ibmclouddb.TB_CLIENTE c, ibmclouddb.TB_CREDITO_HIPOTECARIO ch, ibmclouddb.TB_SOLICITUD s, ibmclouddb.TB_RESULTADOS r "
+							    + "WHERE  s.idCli = c.idCli  AND "
+							    + "       s.idCre = ch.idCre AND "
+							    + "       s.idSol = r.idSol  AND "
+							    + "       s.idSol LIKE '" + idSol + "'";  
+					   }
+					   else{
+						    vSQL = "SELECT c.dniCli, c.nombresCli, c.apellidoMatCli, c.apellidoPatCli, c.tipoCli, c.correoCli, c.generoCli, "
+							     + "       ch.tipoCre, ch.montoInicialCre, ch.montoFinanciarCre, ch.plazoMesesCre, ch.sueldoBrutoCre, ch.costoInmuebleCre, ch.tasaCre, "
+							     + "       s.idCli, s.idCre, "
+							     + "       r.idSol, r.codeVP, r.detalleVP, r.codeVR, r.detalleVR, r.eventoEnvio "
+							     + "FROM   ibmclouddb.TB_CLIENTE c, ibmclouddb.TB_CREDITO_HIPOTECARIO ch, ibmclouddb.TB_SOLICITUD s, ibmclouddb.TB_RESULTADOS r "
+							     + "WHERE  s.idCli = c.idCli  AND "
+							     + "       s.idCre = ch.idCre AND "
+							     + "       s.idSol = r.idSol"; 
+					   }
+					                          
 				       System.out.println( "SQL: [" + vSQL + "]" );
 				       
 				       objStmt = this.objConexion.createStatement();
@@ -385,7 +348,7 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 					  objResponse = Response.status( 500 ).entity( objRespConsSol ).build();
 			   }
 			   finally{ 
-				       System.out.println( "------- [FIN] - procesarObtenerResultados ?? -------" ); 
+				       System.out.println( "------- [FIN] - procesarObtenerResultados -------" ); 
 			   }
 			     
 			   return objResponse; 
