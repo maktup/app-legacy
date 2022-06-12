@@ -145,6 +145,11 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 			   Response      objResponse  = null;
 			   
 			   try{
+				   //PASOS:
+				   //1. Obtener valores de: TB_RESULTADOS cada 20 minutos, que tengan: codeVP & codeVR => 0..
+				   //2. Setear estructura en TOPIC.
+				   //3. Actualizar campo: eventoEnvio => ENVIADO. 
+				   
 				   int vEstadoIdSol = Integer.parseInt( this.objUtilLegacy.existeSolicitudEnCadena( idSol ) ); 
 				   
 				   if( (vEstadoIdSol == 0) ){
