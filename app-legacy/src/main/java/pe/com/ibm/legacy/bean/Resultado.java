@@ -6,15 +6,15 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import java.io.Serializable; 
 
 /**
- * Alerta
+ * Resultado
  * @author cguerra
  **/
- @XmlRootElement( name = "Cliente" ) 
- @Schema( name = "Alerta", description = "POJO que representa la entidad Alerta." )
- public class Alerta implements Serializable{
+ @XmlRootElement( name = "Resultado" ) 
+ @Schema( name = "Resultado", description = "POJO que representa la entidad Resultado." )
+ public class Resultado implements Serializable{
 	 
-		private static final long serialVersionUID = 2548122557761770400L;
-  		
+		private static final long serialVersionUID = 2566122558661770400L;
+ 	
 		@Schema( required = true )
 		@XmlElement
 		private String idSol;
@@ -26,27 +26,19 @@ import java.io.Serializable;
 		@Schema( required = true )
 		@XmlElement
 		private String detalleVP;
+ 
+		@Schema( required = true )
+		@XmlElement
+		private String codeVR;		
 		
 		@Schema( required = true )
 		@XmlElement
-		private String codeVR;
+		private String detalleVR;	
 		
-		@Schema( required = true )
-		@XmlElement
-		private String detalleVR;
-	
-		@Schema( required = true )
-		@XmlElement
-		private String estadoAprobacion;
-
-		@Schema( required = true )
-		@XmlElement
-		private String detalleAprobacion;
-
 		@Schema( required = true )
 		@XmlElement
 		private String eventoEnvio;
-
+ 
 		
 		public String getIdSol() {
 			return idSol;
@@ -88,22 +80,6 @@ import java.io.Serializable;
 			this.detalleVR = detalleVR;
 		}
 
-		public String getEstadoAprobacion() {
-			return estadoAprobacion;
-		}
-
-		public void setEstadoAprobacion(String estadoAprobacion) {
-			this.estadoAprobacion = estadoAprobacion;
-		}
-
-		public String getDetalleAprobacion() {
-			return detalleAprobacion;
-		}
-
-		public void setDetalleAprobacion(String detalleAprobacion) {
-			this.detalleAprobacion = detalleAprobacion;
-		}
-
 		public String getEventoEnvio() {
 			return eventoEnvio;
 		}
@@ -114,7 +90,7 @@ import java.io.Serializable;
 
 		public static long getSerialversionuid() {
 			return serialVersionUID;
-		}
+		}	
  
  }
  

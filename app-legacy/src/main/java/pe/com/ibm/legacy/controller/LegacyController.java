@@ -12,7 +12,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponseSchema;
 import pe.com.ibm.legacy.bean.RespAuditoria;
-import pe.com.ibm.legacy.bean.RespAlerta;
+import pe.com.ibm.legacy.bean.RespConsultaSolicitud; 
 import pe.com.ibm.legacy.service.LegacyService;
 
 /**
@@ -163,7 +163,7 @@ public class LegacyController{
  	} 
      	 	     
    /** 
-    * validarAlerta	
+    * obtenerResultados	
 	* @param  idCli
 	* @param  dniCli
 	* @return Response 
@@ -176,7 +176,7 @@ public class LegacyController{
             description  = "Error en el envio de datos",
             content      = @Content( mediaType = "application/json" ) ) 
     @APIResponseSchema( 
-    		value               = RespAlerta.class,
+    		value               = RespConsultaSolicitud.class,
             responseDescription = "Proceso Exitoso.",
             responseCode        = "200")
     @Operation(

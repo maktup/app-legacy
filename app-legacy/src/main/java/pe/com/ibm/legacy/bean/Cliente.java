@@ -14,7 +14,7 @@ import java.io.Serializable;
  public class Cliente implements Serializable{
 	 
 		private static final long serialVersionUID = 2548122558661770400L;
- 		
+ 
 		@Schema( required = true )
 		@XmlElement
 		private String idCli;
@@ -29,19 +29,23 @@ import java.io.Serializable;
 		
 		@Schema( required = true )
 		@XmlElement
-		private String apellidosCli;
+		private String apellidoMatCli;
 		
 		@Schema( required = true )
 		@XmlElement
-		private String montoIngresoCli;
-	
+		private String apellidoPatCli;
+		
 		@Schema( required = true )
 		@XmlElement
 		private String tipoCli;
-
+	
 		@Schema( required = true )
 		@XmlElement
 		private String correoCli;
+		
+		@Schema( required = true )
+		@XmlElement
+		private String generoCli;
 
 		
 		public String getIdCli() {
@@ -68,20 +72,20 @@ import java.io.Serializable;
 			this.nombresCli = nombresCli;
 		}
 
-		public String getApellidosCli() {
-			return apellidosCli;
+		public String getApellidoMatCli() {
+			return apellidoMatCli;
 		}
 
-		public void setApellidosCli(String apellidosCli) {
-			this.apellidosCli = apellidosCli;
+		public void setApellidoMatCli(String apellidoMatCli) {
+			this.apellidoMatCli = apellidoMatCli;
 		}
 
-		public String getMontoIngresoCli() {
-			return montoIngresoCli;
+		public String getApellidoPatCli() {
+			return apellidoPatCli;
 		}
 
-		public void setMontoIngresoCli(String montoIngresoCli) {
-			this.montoIngresoCli = montoIngresoCli;
+		public void setApellidoPatCli(String apellidoPatCli) {
+			this.apellidoPatCli = apellidoPatCli;
 		}
 
 		public String getTipoCli() {
@@ -98,6 +102,14 @@ import java.io.Serializable;
 
 		public void setCorreoCli(String correoCli) {
 			this.correoCli = correoCli;
+		}
+
+		public String getGeneroCli() {
+			return generoCli;
+		}
+
+		public void setGeneroCli(String generoCli) {
+			this.generoCli = generoCli;
 		}
 
 		public static long getSerialversionuid() {
