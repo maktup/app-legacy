@@ -165,7 +165,7 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 							    + "       ch.tipoCre, ch.montoInicialCre, ch.montoFinanciarCre, ch.plazoMesesCre, ch.sueldoBrutoCre, ch.costoInmuebleCre, ch.tasaCre, "
 							    + "       s.idCli, s.idCre, "
 							    + "       r.idSol, r.codeVP, r.detalleVP, r.codeVR, r.detalleVR, r.eventoEnvio "
-							    + "FROM   ibmclouddb.TB_CLIENTE c, ibmclouddb.TB_CREDITO_HIPOTECARIO ch, ibmclouddb.TB_SOLICITUD s, ibmclouddb.TB_RESULTADOS r "
+							    + "FROM   csmdb.TB_CLIENTE c, csmdb.TB_CREDITO_HIPOTECARIO ch, csmdb.TB_SOLICITUD s, csmdb.TB_RESULTADOS r "
 							    + "WHERE  s.idCli = c.idCli  AND "
 							    + "       s.idCre = ch.idCre AND "
 							    + "       s.idSol = r.idSol  AND "
@@ -176,7 +176,7 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 							     + "       ch.tipoCre, ch.montoInicialCre, ch.montoFinanciarCre, ch.plazoMesesCre, ch.sueldoBrutoCre, ch.costoInmuebleCre, ch.tasaCre, "
 							     + "       s.idCli, s.idCre, "
 							     + "       r.idSol, r.codeVP, r.detalleVP, r.codeVR, r.detalleVR, r.eventoEnvio "
-							     + "FROM   ibmclouddb.TB_CLIENTE c, ibmclouddb.TB_CREDITO_HIPOTECARIO ch, ibmclouddb.TB_SOLICITUD s, ibmclouddb.TB_RESULTADOS r "
+							     + "FROM   csmdb.TB_CLIENTE c, csmdb.TB_CREDITO_HIPOTECARIO ch, csmdb.TB_SOLICITUD s, csmdb.TB_RESULTADOS r "
 							     + "WHERE  s.idCli = c.idCli  AND "
 							     + "       s.idCre = ch.idCre AND "
 							     + "       s.idSol = r.idSol"; 
