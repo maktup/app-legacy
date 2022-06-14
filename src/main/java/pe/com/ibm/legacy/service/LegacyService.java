@@ -37,7 +37,7 @@ import pe.com.ibm.legacy.util.UtilLegacy;
   	    * @param  tasaCre
   	    * @return Response
   	    **/
-		public javax.ws.rs.core.Response procesarValidarRiesgo( double sueldoBrutoCre, int plazoMesesCre, double costoInmuebleCre, double montoInicialCre, double montoFinanciarCre, double tasaCre ){
+		public synchronized javax.ws.rs.core.Response procesarValidarRiesgo( double sueldoBrutoCre, int plazoMesesCre, double costoInmuebleCre, double montoInicialCre, double montoFinanciarCre, double tasaCre ){
 			   System.out.println( "------- [INICIO] - procesarValidarRiesgo -------" );   
 			   
 			   RespAuditoria objRespAudit = new RespAuditoria();
@@ -92,7 +92,7 @@ import pe.com.ibm.legacy.util.UtilLegacy;
   	    * @param  dniCli
   	    * @return Response
   	    **/
-		public javax.ws.rs.core.Response procesarValidarPersona( String idCli, String dniCli ){
+		public synchronized javax.ws.rs.core.Response procesarValidarPersona( String idCli, String dniCli ){ 
 			   System.out.println( "------- [INICIO] - procesarValidarPersona -------" );   
 			   
 			   RespAuditoria objRespAudit = new RespAuditoria();
@@ -137,7 +137,7 @@ import pe.com.ibm.legacy.util.UtilLegacy;
   	    * @param  idSol
   	    * @return Response
   	    **/
-		public javax.ws.rs.core.Response procesarObtenerResultados( String idSol ){
+		public synchronized javax.ws.rs.core.Response procesarObtenerResultados( String idSol ){
 			   System.out.println( "------- [INICIO] - procesarObtenerResultados -------" );   
  		 
 			   Statement             objStmt        = null;
