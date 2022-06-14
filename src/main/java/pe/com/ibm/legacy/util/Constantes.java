@@ -19,12 +19,12 @@ import javax.enterprise.context.ApplicationScoped;
 		public static String  MYSQL_PASSWORD             = "4df8cd6a38a32169ac854de699dcb1b2eacac987ce398a177f4092b0ea1f6366";
 		public static String  MYSQL_HOST                 = "7af86fbb-cb51-47d5-87d2-ad70fb3c222c.c38qvnlz04atmdpus310.databases.appdomain.cloud";
 		public static Integer MYSQL_PUERTO               = 32492;
-		public static String  MYSQL_BD                   = "ibmclouddb";		
+		public static String  MYSQL_BD                   = "csmdb";		
 		public static String  MYSQL_URL                  = "jdbc:mysql://" + MYSQL_HOST + ":" + MYSQL_PUERTO + "/" + MYSQL_BD + "?verifyServerCertificate=false&useSSL=true&requireSSL=true";		
 		public static String  MYSQL_RUTA_TEMP_CERTI      = "/tmp/certificado.crt";
 		public static String  MYSQL_CLAVE_CERTI          = "mariadb";	                         	
 		public static String  MYSQL_DRIVERCLASS          = "org.mariadb.jdbc.Driver";
-		public static String  MYSQL_QUERY                = "SELECT ID, NUM_TARJETA, NUM_CUENTA FROM ibmclouddb.TB_DUMMY_02;";
+		public static String  MYSQL_QUERY                = "SELECT ID, NUM_TARJETA, NUM_CUENTA FROM csmdb.TB_DUMMY_02;";
 		public static int     MYSQL_TIMEOUT_QUERY        = 10;
        		
 		//----------------- [BASE64] -----------------//
