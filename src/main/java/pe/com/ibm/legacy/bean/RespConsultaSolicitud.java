@@ -24,11 +24,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 		@Schema( required = true )
 		@XmlElement
 		private List<Solicitud> listaSolicitud;
-
-		@Schema( required = true )
-		@XmlElement
-		private Resultado resultado;
-		
+ 		
 		//Constructor: 
 		public RespConsultaSolicitud(){
 			   this.listaSolicitud = new ArrayList<Solicitud>();
@@ -52,14 +48,6 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
  
 		public static long getSerialversionuid() {
 			   return serialVersionUID;
-		}
-
-		public Resultado getResultado() {
-			   return resultado;
-		}
-
-		public void setResultado(Resultado resultado) {
-			   this.resultado = resultado;
 		}
  
  }

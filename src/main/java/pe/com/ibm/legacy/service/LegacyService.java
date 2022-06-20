@@ -3,6 +3,8 @@ package pe.com.ibm.legacy.service;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.core.Response;
 import pe.com.ibm.legacy.bean.Auditoria;
@@ -155,6 +157,8 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 				   this.objUtilConexion = new UtilConexion(); 
 				   this.objConexion     = this.objUtilConexion.obtenerConexionMYSQL( this.objConexion );
  
+				   System.out.println( "idSol: [" + idSol + "]" );   
+				   
 	     		   if( this.objConexion != null ){ 
 					   System.out.println( "Successfully connected to MYSQL in IBMCLOUD" );
 					   System.out.println( "DB version: [" + this.objConexion.getMetaData().getDatabaseProductVersion() + "]" ); 
@@ -215,45 +219,49 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 					   int    vIdCre         = 0;
 					   
 					   //TB_RESULTADOS: 
-						   String  vIdSol        = null;
-						   String  vCodeVP       = null;
-						   String  vDetalleVP    = null;
-						   String  vCodeVR       = null;
-						   String  vDetalleVR    = null;
-						   String  vEventoEnvio  = null;						   		
+					   String  vIdSol        = null;
+					   String  vCodeVP       = null;
+					   String  vDetalleVP    = null;
+					   String  vCodeVR       = null;
+					   String  vDetalleVR    = null;
+					   String  vEventoEnvio  = null;						   		
  
-						   for( ;objRs.next(); ){
-							    objRespConsSol = new RespConsultaSolicitud(); 
-							    objSoli        = new Solicitud();
-							    objResult      = new Resultado(); 
-							    objCli         = new Cliente();
-							    objCred        = new CreditoHipotecario();
-							    							    
-							    vDniCli            = objRs.getString( 1 );
-							    vNombresCli        = objRs.getString( 2 );
-							    vApellidoMatCli    = objRs.getString( 3 );
-							    vApellidoPatCli    = objRs.getString( 4 );
-							    vTipoCli           = objRs.getString( 5 );
-							    vCorreoCli         = objRs.getString( 6 );
-							    vGeneroCli         = objRs.getString( 7 );
-							    
-							    vTipoCre           = objRs.getString( 8 );
-							    vMontoInicialCre   = objRs.getDouble( 9 );
-							    vMontoFinanciarCre = objRs.getDouble( 10 );
-							    vPlazoMesesCre     = objRs.getInt( 11 );
-							    vSueldoBrutoCre    = objRs.getDouble( 12 );
-							    vCostoInmuebleCre  = objRs.getDouble( 13 );
-							    vTasaCre           = objRs.getDouble( 14 );
-							    
-							    vIdCli             = objRs.getInt( 15 );
-							    vIdCre             = objRs.getInt( 16 );
-							    
-							    vIdSol             = objRs.getString( 17 );
-							    vCodeVP            = objRs.getString( 18 );
-							    vDetalleVP         = objRs.getString( 19 );
-							    vCodeVR            = objRs.getString( 20 );
-							    vDetalleVR         = objRs.getString( 21 );
-							    vEventoEnvio       = objRs.getString( 22 ); 							    							    
+					   List<Solicitud> listaSol = new  ArrayList<Solicitud>();
+					   
+					   int contador = 1;
+					   
+					   for( ;objRs.next(); ){
+						    objRespConsSol = new RespConsultaSolicitud(); 
+						    objSoli        = new Solicitud();
+						    objResult      = new Resultado(); 
+						    objCli         = new Cliente();
+						    objCred        = new CreditoHipotecario();
+ 
+						    vDniCli            = objRs.getString( 1 );
+						    vNombresCli        = objRs.getString( 2 );
+						    vApellidoMatCli    = objRs.getString( 3 );
+						    vApellidoPatCli    = objRs.getString( 4 );
+						    vTipoCli           = objRs.getString( 5 );
+						    vCorreoCli         = objRs.getString( 6 );
+						    vGeneroCli         = objRs.getString( 7 );
+						    
+						    vTipoCre           = objRs.getString( 8 );
+						    vMontoInicialCre   = objRs.getDouble( 9 );
+						    vMontoFinanciarCre = objRs.getDouble( 10 );
+						    vPlazoMesesCre     = objRs.getInt( 11 );
+						    vSueldoBrutoCre    = objRs.getDouble( 12 );
+						    vCostoInmuebleCre  = objRs.getDouble( 13 );
+						    vTasaCre           = objRs.getDouble( 14 );
+						    
+						    vIdCli             = objRs.getInt( 15 );
+						    vIdCre             = objRs.getInt( 16 );
+						    
+						    vIdSol             = objRs.getString( 17 );
+						    vCodeVP            = objRs.getString( 18 );
+						    vDetalleVP         = objRs.getString( 19 );
+						    vCodeVR            = objRs.getString( 20 );
+						    vDetalleVR         = objRs.getString( 21 );
+						    vEventoEnvio       = objRs.getString( 22 ); 							    							    
  
 						    //Objeto: CLIENTE: 
 						    objCli.setIdCli( vIdCli + "" );
@@ -284,14 +292,21 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 						    objResult.setEventoEnvio( vEventoEnvio );
 						    
 						    //Objeto: SOLICITUD: 
+						    objSoli.setIdSol( vIdSol );
 						    objSoli.setCliente( objCli ); 
 						    objSoli.setCreditoHipotecario( objCred );  	
 						    
+						    //Objeto: RESULTADO: 
+						    objSoli.setResultado( objResult ); 
+						    						    
+						    //Agregando Objeto en Lista: 
+						    listaSol.add( objSoli ); 
+						    
 						    //Objeto: RESPUESTA-SOLICITUD: 
 						    objRespConsSol.setAuditoria( null );
-						    objRespConsSol.getListaSolicitud().add( objSoli );
-						    objRespConsSol.setResultado( objResult ); 
+						    objRespConsSol.setListaSolicitud( listaSol );
 						    
+						    System.out.println( "------------------------- REGISTRO #:[" + contador + "]" ); 
 							System.out.println( "==> vIdCli: [" + vIdCli + "]" );
 							System.out.println( "==> vDniCli: [" + vDniCli + "]" ); 
 							System.out.println( "==> vNombresCli: [" + vNombresCli + "]" );
@@ -315,8 +330,12 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 							System.out.println( "==> vDetalleVP: [" + vDetalleVP + "]" );
 							System.out.println( "==> vCodeVR: [" + vCodeVR + "]" );
 							System.out.println( "==> vDetalleVR: [" + vDetalleVR + "]" );
-							System.out.println( "==> vEventoEnvio: [" + vEventoEnvio + "]" ); 							 
+							System.out.println( "==> vEventoEnvio: [" + vEventoEnvio + "]" ); 		
+							
+							contador ++;
 					   } 	 	 
+ 
+					   System.out.println( "Tamanio LISTA 'Solicitud': [" + objRespConsSol.getListaSolicitud().size() + "]" );
 					   
 					   objAudit.setCodigo( "0" );
 					   objAudit.setDescripcion( "Proceso obtención de datos exitoso." ); 
@@ -329,7 +348,7 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 	     		   objRespConsSol.setAuditoria( objAudit );	     		  
 				   objResponse = Response.ok( objRespConsSol ).build(); 
 			   }
-			   catch( Exception e ) {
+			   catch( Exception e ){
 				      e.printStackTrace();
 				      
 					  objAudit.setCodigo( "-1" );

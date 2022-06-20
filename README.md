@@ -1,4 +1,5 @@
 
+
 IMPORTANTE:
 ----------
 * MICROSERVICIO Dummy para pruebas, que SIMULAN plataforma LEGACY para la presentación E2E.
@@ -48,8 +49,8 @@ DESPLIEGUE OPENSHIFT CON DOCKER:
 $ docker build -t app-legacy .
 $ docker run -i --rm -p 9080:9080 app-legacy
 
-http://localhost:8080/openapi
-http://localhost:8080/openapi/ui/
+http://localhost:9080/openapi
+http://localhost:9080/openapi/ui/
 
 
 

@@ -17,13 +17,29 @@ import java.io.Serializable;
   
 		@Schema( required = true )
 		@XmlElement
+		private String idSol;
+		
+		@Schema( required = true )
+		@XmlElement
 		private Cliente cliente;
 		
 		@Schema( required = true )
 		@XmlElement
 		private CreditoHipotecario creditoHipotecario;
 
+		@Schema( required = true )
+		@XmlElement
+		private Resultado resultado;
 		
+		
+		public Resultado getResultado() {
+			return resultado;
+		}
+
+		public void setResultado(Resultado resultado) {
+			this.resultado = resultado;
+		}
+
 		public Cliente getCliente() {
 			return cliente;
 		}
@@ -42,6 +58,14 @@ import java.io.Serializable;
 
 		public static long getSerialversionuid() {
 			return serialVersionUID;
+		}
+
+		public String getIdSol() {
+			return idSol;
+		}
+
+		public void setIdSol(String idSol) {
+			this.idSol = idSol;
 		}
  
  }
