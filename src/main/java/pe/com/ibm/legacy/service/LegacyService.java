@@ -61,12 +61,12 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 				   //Escenario ERROR: 
 				   if( vMontoMaximoEndeudable < vDivisionDeuda){
 					   objAudit.setCodigo( "-1" );
-					   objAudit.setDescripcion( "Proceso de validación de RIESGO: [NO ACEPTADO], NO califica por CAPACIDAD de endeudamiento." ); 
+					   objAudit.setDescripcion( "Proceso de validacion de RIESGO: [NO ACEPTADO], NO califica por CAPACIDAD de endeudamiento." ); 
 				   }	
 				   //Escenario OK: 
 				   else{
 					    objAudit.setCodigo( "0" );
-					    objAudit.setDescripcion( "Proceso de validación de RIESGO: [SI ACEPTADO], SI califica." );  
+					    objAudit.setDescripcion( "Proceso de validacion de RIESGO: [SI ACEPTADO], SI califica." );  
 				   }
  				   
 				   objRespAudit.setAuditoria( objAudit );				   
@@ -108,11 +108,11 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 				   if( (vEstadoDni == 0) && (vEstadoIdCli == 0) ){
 					   
 					   objAudit.setCodigo( "0" );
-					   objAudit.setDescripcion( "Proceso de validación de PERSONA: [SI ACEPTADO]." ); 
+					   objAudit.setDescripcion( "Proceso de validacion de PERSONA: [SI ACEPTADO]." ); 
 				   }
 				   else{
 					   objAudit.setCodigo( "-1" );
-					   objAudit.setDescripcion( "Proceso de validación de PERSONA: [NO ACEPTADO]." );  
+					   objAudit.setDescripcion( "Proceso de validacion de PERSONA: [NO ACEPTADO]." );  
 				   }
 				   
 				   objRespAudit.setAuditoria( objAudit );				   
@@ -338,7 +338,7 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 					   System.out.println( "Tamanio LISTA 'Solicitud': [" + objRespConsSol.getListaSolicitud().size() + "]" );
 					   
 					   objAudit.setCodigo( "0" );
-					   objAudit.setDescripcion( "Proceso obtención de datos exitoso." ); 
+					   objAudit.setDescripcion( "Proceso obtencion de datos exitoso." ); 
 				   }
 				   else{
 					    objAudit.setCodigo( "-1" );
