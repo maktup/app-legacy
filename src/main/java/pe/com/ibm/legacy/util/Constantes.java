@@ -10,7 +10,7 @@ import javax.enterprise.context.ApplicationScoped;
  public class Constantes{
         
 	    //------------------ [BD-HARDCODE] ------------------//
-		public static String  BD_CODIGOS_VALIDAR_ID_PERSONA   = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20";
+		public static String  BD_CODIGOS_VALIDAR_ID_PERSONA   = "-1,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20";
 		public static String  BD_CODIGOS_VALIDAR_DNI          = "41816133,41816155,42316133,41676133,41816129,41816156,42316133,41556133,4181783,43716133,41867133,42181678";
 		public static String  BD_CODIGOS_VALIDAR_ID_SOLICITUD = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20";
 				        
