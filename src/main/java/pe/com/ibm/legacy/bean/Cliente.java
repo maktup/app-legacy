@@ -45,9 +45,21 @@ import java.io.Serializable;
 		
 		@Schema( required = true )
 		@XmlElement
-		private String generoCli;
-
+		private String telefonoCli;
 		
+		@Schema( required = true )
+		@XmlElement
+		private String generoCli;
+		
+		
+		public String getTelefonoCli() {
+			return telefonoCli;
+		}
+
+		public void setTelefonoCli(String telefonoCli) {
+			this.telefonoCli = telefonoCli;
+		}
+ 
 		public String getIdCli() {
 			return idCli;
 		}

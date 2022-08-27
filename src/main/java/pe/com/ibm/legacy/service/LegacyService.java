@@ -168,7 +168,8 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 						   vSQL = "SELECT c.dniCli, c.nombresCli, c.apellidoMatCli, c.apellidoPatCli, c.tipoCli, c.correoCli, c.generoCli, "
 							    + "       ch.tipoCre, ch.montoInicialCre, ch.montoFinanciarCre, ch.plazoMesesCre, ch.sueldoBrutoCre, ch.costoInmuebleCre, ch.tasaCre, "
 							    + "       s.idCli, s.idCre, "
-							    + "       r.idSol, r.codeVP, r.detalleVP, r.codeVR, r.detalleVR, r.eventoEnvio "
+							    + "       r.idSol, r.codeVP, r.detalleVP, r.codeVR, r.detalleVR, r.eventoEnvio, "
+							    + "       c.telefonoCli "
 							    + "FROM   csmdb.TB_CLIENTE c, csmdb.TB_CREDITO_HIPOTECARIO ch, csmdb.TB_SOLICITUD s, csmdb.TB_RESULTADOS r "
 							    + "WHERE  s.idCli = c.idCli  AND "
 							    + "       s.idCre = ch.idCre AND "
@@ -179,7 +180,8 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 						    vSQL = "SELECT c.dniCli, c.nombresCli, c.apellidoMatCli, c.apellidoPatCli, c.tipoCli, c.correoCli, c.generoCli, "
 							     + "       ch.tipoCre, ch.montoInicialCre, ch.montoFinanciarCre, ch.plazoMesesCre, ch.sueldoBrutoCre, ch.costoInmuebleCre, ch.tasaCre, "
 							     + "       s.idCli, s.idCre, "
-							     + "       r.idSol, r.codeVP, r.detalleVP, r.codeVR, r.detalleVR, r.eventoEnvio "
+							     + "       r.idSol, r.codeVP, r.detalleVP, r.codeVR, r.detalleVR, r.eventoEnvio, "
+							     + "       c.telefonoCli "
 							     + "FROM   csmdb.TB_CLIENTE c, csmdb.TB_CREDITO_HIPOTECARIO ch, csmdb.TB_SOLICITUD s, csmdb.TB_RESULTADOS r "
 							     + "WHERE  s.idCli = c.idCli  AND "
 							     + "       s.idCre = ch.idCre AND "
@@ -204,6 +206,7 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 					   String vTipoCli        = null;
 					   String vCorreoCli      = null;
 					   String vGeneroCli      = null;
+					   String vTelefonoCli    = null;
 					   
 					   //CREDITO_HIPOTECARIO: 
 					   String vTipoCre           = null;
@@ -263,6 +266,8 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 						    vDetalleVR         = objRs.getString( 21 );
 						    vEventoEnvio       = objRs.getString( 22 ); 							    							    
  
+						    vTelefonoCli       = objRs.getString( 23 );
+						    
 						    //Objeto: CLIENTE: 
 						    objCli.setIdCli( vIdCli + "" );
 						    objCli.setDniCli( vDniCli );
@@ -272,6 +277,7 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 						    objCli.setTipoCli(vTipoCli );
 						    objCli.setCorreoCli( vCorreoCli ); 
 						    objCli.setGeneroCli( vGeneroCli );
+						    objCli.setTelefonoCli( vTelefonoCli );
 						    
 						    //Objeto: CREDITO-HIPOTECARIO: 
 						    objCred.setIdCre( vIdCre + "" );
@@ -313,7 +319,8 @@ import pe.com.ibm.legacy.util.UtilLegacy;
 							System.out.println( "==> vApellidoMatCli: [" + vApellidoMatCli + "]" );
 							System.out.println( "==> vApellidoPatCli: [" + vApellidoPatCli + "]" );
 							System.out.println( "==> vTipoCli: [" + vTipoCli + "]" );
-							System.out.println( "==> vIdCvCorreoClireGET: [" + vCorreoCli + "]" );
+							System.out.println( "==> vCorreoCli: [" + vCorreoCli + "]" );
+							System.out.println( "==> vTelefonoCli: [" + vTelefonoCli + "]" );
 							System.out.println( "==> vGeneroCli: [" + vGeneroCli + "]" );
 							System.out.println( "==> vIdCre: [" + vIdCre + "]" );
 							System.out.println( "==> vTipoCre: [" + vTipoCre + "]" );
